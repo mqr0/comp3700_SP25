@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfume Reviews</title>
+    <link rel="stylesheet" href="styles.css"> <!-- ربط ملف CSS الخارجي -->
+
+    <!-- CSS داخلي لتنسيق بعض العناصر -->
+    <style>
+        h1 {
+            color: #34495e; /* 3. Text Properties */
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            text-align: left;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo" class="logo" style="width: 120px;"> <!-- CSS مدمج لتغيير حجم الشعار -->
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="reviews.html">Perfume Reviews</a></li>
+                <li><a href="products.html">Products</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Perfume Reviews</h1>
+        <p>We value your feedback! Please let us know what you think about our perfumes and how you rate our customer service.</p>
+
+        <form action="https://httpbin.org/get" method="GET">
+            <label for="perfume_name">Perfume Name:</label><br>
+            <input type="text" id="perfume_name" name="perfume_name" required><br>
+            
+            <label for="review">Your Review:</label><br>
+            <textarea id="review" name="review" rows="4" cols="50" required></textarea><br>
+            
+            <label for="rating">Rate the Perfume (1 to 5):</label><br>
+            <input type="number" id="rating" name="rating" min="1" max="5" required><br><br>
+
+            <label for="service_rating">Rate Our Customer Service (1 to 5):</label><br>
+            <input type="number" id="service_rating" name="service_rating" min="1" max="5" required><br><br>
+
+            <input type="submit" value="Submit Review" style="background-color: #2980b9; color: white;"> <!-- CSS مدمج لتغيير لون الزر -->
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Your Company. All rights reserved.</p>
+    </footer>
+</body>
+</html>
