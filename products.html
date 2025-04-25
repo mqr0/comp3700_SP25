@@ -4,88 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products</title>
-    <link rel="stylesheet" href="styles.css"> 
-
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        th, td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #333;
-            color: white;
-            font-size: 18px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        tr:hover {
-            background-color: #ddd;
-        }
-
-        .product-name {
-            font-weight: bold;
-            color: #2980b9;
-            margin-left: 10px;
-        }
-
-        .product-price {
-            color: #27ae60;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        
-        .product-info {
-            display: flex;
-            align-items: center;
-        }
-
-        .product-info img {
-            width: 50px;
-            height: auto;
-            margin-right: 10px;
-        }
-
-        .product-info span {
-            font-size: 18px;
-            color: #2980b9;
-            font-weight: bold;
-        }
-    </style>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <img src="logo1.jpg" alt="Logo" class="logo" style="width: 120px;">
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="attar.html">Attar</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-                <li><a href="reviews.html">Reviews</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="store-policies.html">Store Policies</a></li> 
-                <li><a href="about.html">About Us</a></li>
-            </ul>
-        </nav>
+<body style="min-height: 100vh; display: flex; flex-direction: column;">
+    <header class="bg-dark text-white p-3">
+        <div class="container">
+            <div class="text-center">
+                <img src="logo1.jpg" alt="Logo" class="logo" style="width: 120px;">
+            </div>
+            <nav>
+                <ul class="nav justify-content-center">
+                    <li class="nav-item"><a href="index.html" class="nav-link text-white">Home</a></li>
+                    <li class="nav-item"><a href="attar.html" class="nav-link text-white">Attar</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link text-white">Contact Us</a></li>
+                    <li class="nav-item"><a href="reviews.html" class="nav-link text-white">Reviews</a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link text-white">Products</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link text-white">Blog</a></li>
+                    <li class="nav-item"><a href="store-policies.html" class="nav-link text-white">Store Policies</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link text-white">About Us</a></li>
+                    <li class="nav-item"><a href="questionnaire.html" class="nav-link text-white">Questionnaire</a></li>
+                    <li class="nav-item"><a href="calculator.html" class="nav-link text-white">Calculator</a></li>
+                    <li class="nav-item"><a href="funpage.html" class="nav-link text-white">Fun Page</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <h1>Our Products</h1>
+    <main class="container mt-5">
+        <h1 class="text-center">Our Products</h1>
         
-        <table>
+        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>Product Info</th>
@@ -97,7 +45,7 @@
             <tbody>
                 <tr>
                     <td class="product-info">
-                        <img src="mai.jpg" alt="MAYSAM">
+                        <img src="mai.jpg" alt="MAYSAM" style="width: 50px;">
                         <span>MAYSAM</span>
                     </td>
                     <td>A beautiful floral fragrance with Omani hinna</td>
@@ -106,7 +54,7 @@
                 </tr>
                 <tr>
                     <td class="product-info">
-                        <img src="mad.jpg" alt="MADAR">
+                        <img src="mad.jpg" alt="MADAR" style="width: 50px;">
                         <span>MADAR</span>
                     </td>
                     <td>A refreshing citrus scent</td>
@@ -115,7 +63,7 @@
                 </tr>
                 <tr>
                     <td class="product-info">
-                        <img src="go.jpg" alt="GOLDEN ELIXIR">
+                        <img src="go.jpg" alt="GOLDEN ELIXIR" style="width: 50px;">
                         <span>GOLDEN ELIXIR</span>
                     </td>
                     <td>A sweet vanilla and amber blend</td>
@@ -124,7 +72,7 @@
                 </tr>
                 <tr>
                     <td class="product-info">
-                        <img src="wh.jpg" alt="WHISPERS OF DAWN">
+                        <img src="wh.jpg" alt="WHISPERS OF DAWN" style="width: 50px;">
                         <span>WHISPERS OF DAWN</span>
                     </td>
                     <td>A rich and woody scent</td>
@@ -135,8 +83,12 @@
         </table>
     </main>
 
-    <footer>
-        <p>&copy; 2025 Fanjan Officiall</p>
+    <footer class="bg-dark text-white text-center p-3 mt-auto">
+        <p>&copy; 2025 Fanjan Official</p>
     </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
