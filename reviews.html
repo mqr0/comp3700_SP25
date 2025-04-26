@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reviews</title>
- 
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reviews</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <header class="bg-dark text-white p-3">
-        <div class="container">
-            <div class="text-center">
-                <img src="logo2.png" alt="Logo" class="logo" style="width: 120px;">
-            </div>
+<body style="min-height: 100vh; display: flex; flex-direction: column;">
+
+  <header class="bg-dark text-white p-3">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-2 text-center">
+          <img src="logo2.png" alt="Logo" class="logo" style="width: 120px;">
+        </div>
+        <div class="col-md-10">
             <nav>
                 <ul class="nav justify-content-center">
                     <li class="nav-item"><a href="index.html" class="nav-link text-white">Home</a></li>
@@ -29,45 +31,141 @@
                 </ul>
             </nav>
         </div>
-    </header>
+      </div>
+    </div>
+  </header>
 
-    <main class="container mt-5">
-        <h1 class="text-center">Perfume Reviews</h1>
-        <p class="text-center">We value your feedback! Please let us know what you think about our perfumes and how you rate our customer service.</p>
+  <main class="container mt-5 mb-5">
+    <h1 class="text-center mb-4">Perfume Reviews</h1>
 
-        
-        <form action="https://httpbin.org/get" method="GET" class="mx-auto" style="max-width: 600px;">
-            <div class="form-group">
-                <label for="perfume_name">Perfume Name:</label>
-                <input type="text" id="perfume_name" name="perfume_name" class="form-control" required>
-            </div>
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>Perfume Name</th>
+          <th>Review</th>
+          <th>Service Rating</th>
+        </tr>
+      </thead>
+      <tbody id="reviewTableBody">
+      </tbody>
+    </table>
 
-            <div class="form-group">
-                <label for="review">Your Review:</label>
-                <textarea id="review" name="review" class="form-control" rows="4" required></textarea>
-            </div>
+    <hr>
 
-            <div class="form-group">
-                <label for="rating">Rate the Perfume (1 to 5):</label>
-                <input type="number" id="rating" name="rating" class="form-control" min="1" max="5" required>
-            </div>
+    <h2 class="text-center mb-4">Submit New Review</h2>
 
-            <div class="form-group">
-                <label for="service_rating">Rate Our Customer Service (1 to 5):</label>
-                <input type="number" id="service_rating" name="service_rating" class="form-control" min="1" max="5" required>
-            </div>
+    <form id="addReviewForm" class="mx-auto" style="max-width: 600px;">
+      <div class="form-group">
+        <label for="perfumeName">Perfume Name:</label>
+        <select id="perfumeName" class="form-control" required>
+          <option value="">Select perfume name</option>
+          <option value="MAYSAM">MAYSAM</option>
+          <option value="MADAR">MADAR</option>
+          <option value="GOLDEN ELIXIR">GOLDEN ELIXIR</option>
+          <option value="WHISPERS OF DAWN">WHISPERS OF DAWN</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
 
-            <button type="submit" class="btn btn-primary btn-block">Submit Review</button>
-        </form>
-    </main>
+      <div class="form-group">
+        <label for="reviewText">Your Review:</label>
+        <textarea id="reviewText" class="form-control" rows="3" placeholder="Write your review" required></textarea>
+      </div>
 
-    <footer class="bg-dark text-white text-center p-3 mt-auto">
-        <p>&copy; 2025 Fanjan Official</p>
-    </footer>
+      <div class="form-group">
+        <label for="serviceRating">Service Rating:</label>
+        <select id="serviceRating" class="form-control" required>
+          <option value="">Select a rating</option>
+          <option value="5/5">5/5</option>
+          <option value="4/5">4/5</option>
+          <option value="3/5">3/5</option>
+          <option value="2/5">2/5</option>
+          <option value="1/5">1/5</option>
+        </select>
+      </div>
 
+      <button type="submit" class="btn btn-success btn-block">Submit Review</button>
+    </form>
+  </main>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <footer class="bg-dark text-white text-center p-3 mt-auto">
+    <p>&copy; 2025 Fanjan Official</p>
+  </footer>
+
+  <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title" id="successModalLabel">Success</h5>
+          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Review Added Successfully ✅
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <script>
+    let reviews = [
+      { perfumeName: "MAYSAM", review: "Amazing floral scent!", serviceRating: "5/5" },
+      { perfumeName: "MADAR", review: "Refreshing and light!", serviceRating: "4/5" }
+    ];
+
+    const reviewTableBody = document.getElementById('reviewTableBody');
+
+    function displayReviews() {
+      reviewTableBody.innerHTML = "";
+      reviews.forEach(review => {
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+          <td>${review.perfumeName}</td>
+          <td>${review.review}</td>
+          <td>${review.serviceRating}</td>
+        `;
+
+        reviewTableBody.appendChild(row);
+      });
+    }
+
+    displayReviews();
+
+    const addReviewForm = document.getElementById('addReviewForm');
+    addReviewForm.addEventListener('submit', function(event) {
+      event.preventDefault(); 
+
+      const perfumeName = document.getElementById('perfumeName').value;
+      const reviewText = document.getElementById('reviewText').value;
+      const serviceRating = document.getElementById('serviceRating').value;
+
+      if (!perfumeName || !reviewText || !serviceRating) {
+        alert("Please fill all fields correctly.");
+        return;
+      }
+
+      const newReview = {
+        perfumeName: perfumeName,
+        review: reviewText,
+        serviceRating: serviceRating
+      };
+
+      reviews.push(newReview);
+      displayReviews(); 
+      addReviewForm.reset(); 
+
+      $('#successModal').modal('show');
+    });
+  </script>
+
 </body>
 </html>
