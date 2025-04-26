@@ -1,43 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> 
+<html lang="en"> 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reviews</title>
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Reviews</title> <!-- Title of the page -->
+
+  <!-- Link to Bootstrap CSS for styling -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body style="min-height: 100vh; display: flex; flex-direction: column;">
 
+<body style="min-height: 100vh; display: flex; flex-direction: column;"> <!-- Full-height body with flex layout -->
+
+  <!-- Header section with logo and navigation menu -->
   <header class="bg-dark text-white p-3">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-md-2 text-center">
+          <!-- Company logo -->
           <img src="logo2.png" alt="Logo" class="logo" style="width: 120px;">
         </div>
         <div class="col-md-10">
-            <nav>
-                <ul class="nav justify-content-center">
-                    <li class="nav-item"><a href="index.html" class="nav-link text-white">Home</a></li>
-                    <li class="nav-item"><a href="attar.html" class="nav-link text-white">Attar</a></li>
-                    <li class="nav-item"><a href="contact.html" class="nav-link text-white">Contact Us</a></li>
-                    <li class="nav-item"><a href="reviews.html" class="nav-link text-white">Reviews</a></li>
-                    <li class="nav-item"><a href="products.html" class="nav-link text-white">Products</a></li>
-                    <li class="nav-item"><a href="blog.html" class="nav-link text-white">Blog</a></li>
-                    <li class="nav-item"><a href="store-policies.html" class="nav-link text-white">Store Policies</a></li>
-                    <li class="nav-item"><a href="about.html" class="nav-link text-white">About Us</a></li>
-                    <li class="nav-item"><a href="questionnaire.html" class="nav-link text-white">Questionnaire</a></li>
-                    <li class="nav-item"><a href="calculator.html" class="nav-link text-white">Calculator</a></li>
-                    <li class="nav-item"><a href="funpage.html" class="nav-link text-white">Fun Page</a></li>
-                </ul>
-            </nav>
+          <!-- Navigation bar -->
+          <nav>
+            <ul class="nav justify-content-center">
+              <li class="nav-item"><a href="index.html" class="nav-link text-white">Home</a></li>
+              <li class="nav-item"><a href="attar.html" class="nav-link text-white">Attar</a></li>
+              <li class="nav-item"><a href="contact.html" class="nav-link text-white">Contact Us</a></li>
+              <li class="nav-item"><a href="reviews.html" class="nav-link text-white">Reviews</a></li>
+              <li class="nav-item"><a href="products.html" class="nav-link text-white">Products</a></li>
+              <li class="nav-item"><a href="blog.html" class="nav-link text-white">Blog</a></li>
+              <li class="nav-item"><a href="store-policies.html" class="nav-link text-white">Store Policies</a></li>
+              <li class="nav-item"><a href="about.html" class="nav-link text-white">About Us</a></li>
+              <li class="nav-item"><a href="questionnaire.html" class="nav-link text-white">Questionnaire</a></li>
+              <li class="nav-item"><a href="calculator.html" class="nav-link text-white">Calculator</a></li>
+              <li class="nav-item"><a href="funpage.html" class="nav-link text-white">Fun Page</a></li>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
   </header>
 
+  <!-- Main content section -->
   <main class="container mt-5 mb-5">
-    <h1 class="text-center mb-4">Perfume Reviews</h1>
+    <h1 class="text-center mb-4">Perfume Reviews</h1> <!-- Page title -->
 
+    <!-- Table to display existing reviews -->
     <table class="table table-striped">
       <thead class="thead-dark">
         <tr>
@@ -47,14 +55,17 @@
         </tr>
       </thead>
       <tbody id="reviewTableBody">
+        <!-- Reviews will be dynamically inserted here -->
       </tbody>
     </table>
 
     <hr>
 
-    <h2 class="text-center mb-4">Submit New Review</h2>
+    <h2 class="text-center mb-4">Submit New Review</h2> <!-- Section to submit a new review -->
 
+    <!-- Form for adding a new review -->
     <form id="addReviewForm" class="mx-auto" style="max-width: 600px;">
+      <!-- Perfume Name dropdown -->
       <div class="form-group">
         <label for="perfumeName">Perfume Name:</label>
         <select id="perfumeName" class="form-control" required>
@@ -67,11 +78,13 @@
         </select>
       </div>
 
+      <!-- Review Textarea -->
       <div class="form-group">
         <label for="reviewText">Your Review:</label>
         <textarea id="reviewText" class="form-control" rows="3" placeholder="Write your review" required></textarea>
       </div>
 
+      <!-- Service Rating dropdown -->
       <div class="form-group">
         <label for="serviceRating">Service Rating:</label>
         <select id="serviceRating" class="form-control" required>
@@ -84,14 +97,17 @@
         </select>
       </div>
 
+      <!-- Submit button -->
       <button type="submit" class="btn btn-success btn-block">Submit Review</button>
     </form>
   </main>
 
+  <!-- Footer section -->
   <footer class="bg-dark text-white text-center p-3 mt-auto">
-    <p>&copy; 2025 Fanjan Official</p>
+    <p>&copy; 2025 Fanjan Official</p> <!-- Footer text -->
   </footer>
 
+  <!-- Success Modal to show confirmation message -->
   <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -102,7 +118,7 @@
           </button>
         </div>
         <div class="modal-body">
-          Review Added Successfully ✅
+          Review Added Successfully 
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
@@ -111,59 +127,68 @@
     </div>
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- JavaScript libraries for Bootstrap functionality -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> <!-- jQuery library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> <!-- Popper.js for tooltip and popover positioning -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> <!-- Bootstrap JavaScript components -->
 
+  <!-- Custom JavaScript for handling reviews -->
   <script>
+    // Initial reviews data
     let reviews = [
       { perfumeName: "MAYSAM", review: "Amazing floral scent!", serviceRating: "5/5" },
       { perfumeName: "MADAR", review: "Refreshing and light!", serviceRating: "4/5" }
     ];
 
-    const reviewTableBody = document.getElementById('reviewTableBody');
+    const reviewTableBody = document.getElementById('reviewTableBody'); // Get the review table body element
 
+    // Function to display all reviews
     function displayReviews() {
-      reviewTableBody.innerHTML = "";
+      reviewTableBody.innerHTML = ""; // Clear previous content
       reviews.forEach(review => {
         const row = document.createElement('tr');
 
+        // Create HTML structure for a review row
         row.innerHTML = `
           <td>${review.perfumeName}</td>
           <td>${review.review}</td>
           <td>${review.serviceRating}</td>
         `;
 
-        reviewTableBody.appendChild(row);
+        reviewTableBody.appendChild(row); // Append the row to the table
       });
     }
 
-    displayReviews();
+    displayReviews(); // Initial display of reviews
 
+    // Form submission event for adding a new review
     const addReviewForm = document.getElementById('addReviewForm');
     addReviewForm.addEventListener('submit', function(event) {
-      event.preventDefault(); 
+      event.preventDefault(); // Prevent default form submission
 
+      // Get values from the form fields
       const perfumeName = document.getElementById('perfumeName').value;
       const reviewText = document.getElementById('reviewText').value;
       const serviceRating = document.getElementById('serviceRating').value;
 
+      // Simple validation
       if (!perfumeName || !reviewText || !serviceRating) {
         alert("Please fill all fields correctly.");
         return;
       }
 
+      // Create a new review object
       const newReview = {
         perfumeName: perfumeName,
         review: reviewText,
         serviceRating: serviceRating
       };
 
-      reviews.push(newReview);
-      displayReviews(); 
-      addReviewForm.reset(); 
+      reviews.push(newReview); // Add the new review to the list
+      displayReviews(); // Update the displayed reviews
+      addReviewForm.reset(); // Reset the form fields
 
-      $('#successModal').modal('show');
+      $('#successModal').modal('show'); // Show success modal
     });
   </script>
 

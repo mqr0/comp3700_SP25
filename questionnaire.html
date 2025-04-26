@@ -1,32 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> 
+<html lang="en"> 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questionnaire</title>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Questionnaire</title> 
+
+    <!-- Link to Bootstrap CSS for styling and responsive design -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- JavaScript function for basic form validation -->
     <script>
-        
         function validateForm() {
+            // Get values from input fields
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const feedback = document.getElementById('feedback').value;
 
+            // Check if any field is empty
             if (!name || !email || !feedback) {
                 alert('Please fill all the fields');
-                return false;
+                return false; // Prevent form submission
             }
 
-            return true;
+            return true; // Allow form submission
         }
     </script>
 </head>
-<body style="min-height: 100vh; display: flex; flex-direction: column;">
+
+<body style="min-height: 100vh; display: flex; flex-direction: column;"> <!-- Full-height body with flex layout -->
+
+    <!-- Header section with logo and navigation menu -->
     <header class="bg-dark text-white p-3">
         <div class="container">
             <div class="text-center">
+                <!-- Website logo -->
                 <img src="logo2.png" alt="Logo" class="logo" style="width: 120px;">
             </div>
+
+            <!-- Navigation bar -->
             <nav>
                 <ul class="nav justify-content-center">
                     <li class="nav-item"><a href="index.html" class="nav-link text-white">Home</a></li>
@@ -45,36 +56,44 @@
         </div>
     </header>
 
+    <!-- Main content section -->
     <main class="container mt-5">
-        <h1 class="text-center">User Feedback Questionnaire</h1>
-        <p class="text-center">We value your feedback! Please fill out the form below:</p>
+        <h1 class="text-center">User Feedback Questionnaire</h1> <!-- Page heading -->
+        <p class="text-center">We value your feedback! Please fill out the form below:</p> <!-- Introduction text -->
 
+        <!-- Feedback form with basic validation -->
         <form action="https://httpbin.org/get" method="GET" onsubmit="return validateForm()" class="mx-auto" style="max-width: 600px;">
+            <!-- Name input field -->
             <div class="form-group">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" class="form-control" required>
             </div>
 
+            <!-- Email input field -->
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" class="form-control" required>
             </div>
 
+            <!-- Feedback textarea -->
             <div class="form-group">
                 <label for="feedback">Your Feedback:</label>
                 <textarea id="feedback" name="feedback" class="form-control" rows="4" required></textarea>
             </div>
 
+            <!-- Submit button -->
             <button type="submit" class="btn btn-primary btn-block">Submit</button>
         </form>
     </main>
 
+    <!-- Footer section -->
     <footer class="bg-dark text-white text-center p-3 mt-auto">
-        <p>&copy; 2025 Fanjan Official</p>
+        <p>&copy; 2025 Fanjan Official</p> <!-- Footer text -->
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- JavaScript libraries for Bootstrap functionality -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> <!-- jQuery library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> <!-- Popper.js for tooltips and popovers -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> <!-- Bootstrap's JavaScript components -->
 </body>
 </html>

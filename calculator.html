@@ -1,38 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> 
+<html lang="en"> 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bill Calculator</title>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Bill Calculator</title> 
+
+    <!-- Link to Bootstrap CSS for styling -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- JavaScript function to calculate the total bill -->
     <script>
-       
         function calculateBill() {
+            // Get user inputs and parse them as floating point numbers
             const price = parseFloat(document.getElementById('price').value); 
             const discount = parseFloat(document.getElementById('discount').value); 
             const shippingFee = parseFloat(document.getElementById('shipping').value); 
 
+            // Validate if inputs are numbers
             if (isNaN(price) || isNaN(discount) || isNaN(shippingFee)) {
                 alert('Please enter valid numbers.');
                 return;
             }
 
-            
+            // Calculate the discount amount
             const discountAmount = price * (discount / 100);
             
+            // Calculate the final total after applying discount and adding shipping
             const totalAmount = price - discountAmount + shippingFee;
 
-            
+            // Display the result on the page
             document.getElementById('total').innerText = 'Total Amount: ' + totalAmount.toFixed(2) + ' OMR';
         }
     </script>
 </head>
 <body>
+    <!-- Header section with logo and navigation menu -->
     <header class="bg-dark text-white p-3">
         <div class="container">
             <div class="text-center">
+                <!-- Company logo -->
                 <img src="logo2.png" alt="Logo" class="logo" style="width: 120px;">
             </div>
+
+            <!-- Navigation bar -->
             <nav>
                 <ul class="nav justify-content-center">
                     <li class="nav-item"><a href="index.html" class="nav-link text-white">Home</a></li>
@@ -51,11 +61,12 @@
         </div>
     </header>
 
+    <!-- Main content area -->
     <main class="container mt-5">
-        <h1 class="text-center">Invoice Calculator</h1>
-        <p class="text-center">Please enter the price of your purchase, apply any discount, and add the shipping fee.</p>
+        <h1 class="text-center">Invoice Calculator</h1> <!-- Main heading -->
+        <p class="text-center">Please enter the price of your purchase, apply any discount, and add the shipping fee.</p> <!-- Instruction text -->
 
-        
+        <!-- Form to input price, discount, and shipping fee -->
         <form class="mx-auto" style="max-width: 600px;">
             <div class="form-group">
                 <label for="price">Price (OMR):</label>
@@ -72,18 +83,25 @@
                 <input type="number" id="shipping" class="form-control" placeholder="Enter shipping fee" required>
             </div>
 
+            <!-- Button to trigger calculation -->
             <button type="button" class="btn btn-primary btn-block" onclick="calculateBill()">Calculate Total</button>
         </form>
 
+        <!-- Section to display the final calculated total -->
         <p id="total" class="text-center mt-4" style="font-size: 20px; font-weight: bold;"></p>
     </main>
 
+    <!-- Footer section -->
     <footer class="bg-dark text-white text-center p-3 mt-auto">
-        <p>&copy; 2025 Fanjan Official</p>
+        <p>&copy; 2025 Fanjan Official</p> <!-- Copyright -->
     </footer>
 
+    <!-- JavaScript Libraries to support Bootstrap components -->
+    <!-- jQuery library -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <!-- Popper.js for positioning tooltips and popovers -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- Bootstrap's JavaScript components -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

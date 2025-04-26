@@ -1,49 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> 
+<html lang="en"> 
 <head>
-    <meta charset="UTF-8">    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fun Page</title>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Fun Page</title> 
+
+    <!-- Link to Bootstrap CSS for styling -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- JavaScript functions for interactive features -->
     <script>
+        // Function to change the background color randomly
         function changeBackgroundColor() {
-            const colors = ['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#33FFF6', '#FF5733'];
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
-            document.body.style.backgroundColor = randomColor;
+            const colors = ['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#33FFF6', '#FF5733']; // Array of colors
+            const randomColor = colors[Math.floor(Math.random() * colors.length)]; // Pick a random color
+            document.body.style.backgroundColor = randomColor; // Change body background
         }
 
-        let secretNumber = Math.floor(Math.random() * 100) + 1; 
-        let attempts = 0;
+        // Variables for the "Guess the Number" game
+        let secretNumber = Math.floor(Math.random() * 100) + 1; // Random secret number between 1-100
+        let attempts = 0; // Count user's attempts
 
+        // Function to check user's guess
         function checkGuess() {
-            const guess = parseInt(document.getElementById('guess').value);
-            attempts++;
+            const guess = parseInt(document.getElementById('guess').value); // Get user's guess
+            attempts++; // Increase attempt count
 
+            // Validate input
             if (isNaN(guess)) {
                 alert("Please enter a valid number.");
                 return;
             }
 
+            // Provide feedback based on user's guess
             if (guess < secretNumber) {
                 document.getElementById('result').innerHTML = "Too low! Try again.";
             } else if (guess > secretNumber) {
                 document.getElementById('result').innerHTML = "Too high! Try again.";
             } else {
                 document.getElementById('result').innerHTML = `Correct! You guessed the number in ${attempts} attempts.`;
-                document.getElementById('guessButton').disabled = true;
+                document.getElementById('guessButton').disabled = true; // Disable button after correct guess
             }
         }
     </script>
 </head>
-<body style="min-height: 100vh; display: flex; flex-direction: column;">
+
+<body style="min-height: 100vh; display: flex; flex-direction: column;"> <!-- Full-height body with flex layout -->
+
+    <!-- Header section with logo and navigation menu -->
     <header class="bg-dark text-white p-3">
         <div class="container">
-
             <div class="row align-items-center">
                 <div class="col-md-2 text-center">
+                    <!-- Company logo -->
                     <img src="logo2.png" alt="Logo" class="logo" style="width: 120px;">
                 </div>
                 <div class="col-md-10">
+                    <!-- Navigation bar -->
                     <ul class="nav justify-content-center">
                         <li class="nav-item"><a href="index.html" class="nav-link text-white">Home</a></li>
                         <li class="nav-item"><a href="attar.html" class="nav-link text-white">Attar</a></li>
@@ -58,16 +71,21 @@
                         <li class="nav-item"><a href="funpage.html" class="nav-link text-white">Fun Page</a></li>
                     </ul>
                 </div>
+            </div>
         </div>
     </header>
 
+    <!-- Main content section -->
     <main class="container mt-5">
         <div class="row text-center">
+
+            <!-- Section for changing background color -->
             <div class="col-md-6 mb-5">
                 <h2>Change Background Color</h2>
                 <button class="btn btn-info" onclick="changeBackgroundColor()">Change Background Color</button>
             </div>
 
+            <!-- Section for the guessing game -->
             <div class="col-md-6">
                 <h2>Guess the Number Game!</h2>
                 <p>Try to guess the number between 1 and 100.</p>
@@ -75,17 +93,20 @@
                     <input type="number" id="guess" class="form-control" placeholder="Enter your guess" min="1" max="100">
                 </div>
                 <button id="guessButton" class="btn btn-primary" onclick="checkGuess()">Submit Guess</button>
-                <p id="result" class="mt-3"></p>
+                <p id="result" class="mt-3"></p> <!-- Feedback result -->
             </div>
+
         </div>
     </main>
 
+    <!-- Footer section -->
     <footer class="bg-dark text-white text-center p-3 mt-auto">
-        <p>&copy; 2025 Fanjan Official</p>
+        <p>&copy; 2025 Fanjan Official</p> <!-- Copyright -->
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- JavaScript libraries for Bootstrap functionality -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> <!-- jQuery library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> <!-- Popper.js for tooltip positioning -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> <!-- Bootstrap JavaScript -->
 </body>
 </html>
