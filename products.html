@@ -5,118 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Products</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    .product-info img {
-      width: 50px;
-      height: auto;
-      margin-right: 10px;
-    }
-  </style>
 </head>
-<body>
+<body style="min-height: 100vh; display: flex; flex-direction: column;">
+
   <header class="bg-dark text-white p-3">
     <div class="container">
-      <div class="text-center">
-        <img src="logo1.jpg" alt="Logo" class="logo" style="width: 120px;">
+      <div class="row align-items-center">
+        <div class="col-md-2 text-center">
+          <img src="logo2.png" alt="Logo" class="logo" style="width: 120px;">
+        </div>
+        <div class="col-md-10">
+          <ul class="nav justify-content-center">
+            <li class="nav-item"><a href="index.html" class="nav-link text-white">Home</a></li>
+            <li class="nav-item"><a href="attar.html" class="nav-link text-white">Attar</a></li>
+            <li class="nav-item"><a href="contact.html" class="nav-link text-white">Contact Us</a></li>
+            <li class="nav-item"><a href="reviews.html" class="nav-link text-white">Reviews</a></li>
+            <li class="nav-item"><a href="products.html" class="nav-link text-white">Products</a></li>
+            <li class="nav-item"><a href="blog.html" class="nav-link text-white">Blog</a></li>
+            <li class="nav-item"><a href="store-policies.html" class="nav-link text-white">Store Policies</a></li>
+            <li class="nav-item"><a href="about.html" class="nav-link text-white">About Us</a></li>
+            <li class="nav-item"><a href="questionnaire.html" class="nav-link text-white">Questionnaire</a></li>
+            <li class="nav-item"><a href="calculator.html" class="nav-link text-white">Calculator</a></li>
+            <li class="nav-item"><a href="funpage.html" class="nav-link text-white">Fun Page</a></li>
+          </ul>
+        </div>
       </div>
-      <nav>
-        <ul class="nav justify-content-center">
-          <li class="nav-item"><a href="index.html" class="nav-link text-white">Home</a></li>
-          <li class="nav-item"><a href="products.html" class="nav-link text-white">Products</a></li>
-        </ul>
-      </nav>
     </div>
   </header>
 
-  <main class="container mt-5">
+  <main class="container mt-5 mb-5">
     <h1 class="text-center mb-4">Our Products</h1>
 
     <table class="table table-striped">
       <thead class="thead-dark">
         <tr>
-          <th>Product Info</th>
+          <th>Image</th>
+          <th>Product Name</th>
           <th>Description</th>
           <th>Price</th>
           <th>Rating</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td class="product-info">
-            <img src="mai.jpg" alt="MAYSAM"> MAYSAM
-          </td>
-          <td>A beautiful floral fragrance with Omani hinna</td>
-          <td>15 OMR</td>
-          <td>★★★★☆</td>
-        </tr>
-        <tr>
-          <td class="product-info">
-            <img src="mad.jpg" alt="MADAR"> MADAR
-          </td>
-          <td>A refreshing citrus scent</td>
-          <td>12 OMR</td>
-          <td>★★★☆☆</td>
-        </tr>
-        <tr>
-          <td class="product-info">
-            <img src="go.jpg" alt="GOLDEN ELIXIR"> GOLDEN ELIXIR
-          </td>
-          <td>A sweet vanilla and amber blend</td>
-          <td>24 OMR</td>
-          <td>★★★★★</td>
-        </tr>
-        <tr>
-          <td class="product-info">
-            <img src="wh.jpg" alt="WHISPERS OF DAWN"> WHISPERS OF DAWN
-          </td>
-          <td>A rich and woody scent</td>
-          <td>24 OMR</td>
-          <td>★★★★☆</td>
-        </tr>
+      <tbody id="productTableBody">
       </tbody>
     </table>
-
-    <h2 class="mt-5">Available Products (Dynamic Array)</h2>
-    <ul id="productList" class="list-group mb-5"></ul>
-
-    <h2>Our Customers</h2>
-    <ul id="customerList" class="list-group"></ul>
-
   </main>
 
-  <footer class="bg-dark text-white text-center p-3 mt-5">
+  <footer class="bg-dark text-white text-center p-3 mt-auto">
     <p>&copy; 2025 Fanjan Official</p>
   </footer>
 
   <script>
-
     const products = [
-      { name: "MAYSAM", price: 15 },
-      { name: "MADAR", price: 12 },
-      { name: "GOLDEN ELIXIR", price: 24 },
-      { name: "WHISPERS OF DAWN", price: 24 }
+      { image: "mai.jpg", name: "MAYSAM", description: "Floral scent with Omani hinna", price: 15, rating: "★★★★☆" },
+      { image: "mad.jpg", name: "MADAR", description: "Refreshing citrus scent", price: 12, rating: "★★★☆☆" },
+      { image: "go.jpg", name: "GOLDEN ELIXIR", description: "Sweet vanilla and amber blend", price: 24, rating: "★★★★★" },
+      { image: "wh.jpg", name: "WHISPERS OF DAWN", description: "Rich and woody scent", price: 24, rating: "★★★★☆" }
     ];
 
-    const customers = [
-      { name: "Ahmed Al-Mutairi", email: "ahmed@example.com" },
-      { name: "Fatima Al-Saadi", email: "fatima@example.com" },
-      { name: "Salim Al-Busaidi", email: "salim@example.com" }
-    ];
+    const tableBody = document.getElementById('productTableBody');
 
-    const productList = document.getElementById('productList');
     products.forEach(product => {
-      const li = document.createElement('li');
-      li.className = "list-group-item";
-      li.textContent = `Name: ${product.name} - Price: ${product.price} OMR`;
-      productList.appendChild(li);
-    });
+      const row = document.createElement('tr');
 
-    const customerList = document.getElementById('customerList');
-    customers.forEach(customer => {
-      const li = document.createElement('li');
-      li.className = "list-group-item";
-      li.textContent = `Name: ${customer.name} - Email: ${customer.email}`;
-      customerList.appendChild(li);
+      row.innerHTML = `
+        <td><img src="${product.image}" alt="${product.name}" style="width: 60px;"></td>
+        <td>${product.name}</td>
+        <td>${product.description}</td>
+        <td>${product.price} OMR</td>
+        <td>${product.rating}</td>
+      `;
+
+      tableBody.appendChild(row);
     });
   </script>
 
