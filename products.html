@@ -15,10 +15,21 @@
           <img src="logo1.jpg" alt="Logo" class="logo" style="width: 120px;">
         </div>
         <div class="col-md-10">
-          <ul class="nav justify-content-center">
-            <li class="nav-item"><a href="index.html" class="nav-link text-white">Home</a></li>
-            <li class="nav-item"><a href="products.html" class="nav-link text-white">Products</a></li>
-          </ul>
+          <nav>
+            <ul class="nav justify-content-center">
+                <li class="nav-item"><a href="index.html" class="nav-link text-white">Home</a></li>
+                <li class="nav-item"><a href="attar.html" class="nav-link text-white">Attar</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link text-white">Contact Us</a></li>
+                <li class="nav-item"><a href="reviews.html" class="nav-link text-white">Reviews</a></li>
+                <li class="nav-item"><a href="products.html" class="nav-link text-white">Products</a></li>
+                <li class="nav-item"><a href="blog.html" class="nav-link text-white">Blog</a></li>
+                <li class="nav-item"><a href="store-policies.html" class="nav-link text-white">Store Policies</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link text-white">About Us</a></li>
+                <li class="nav-item"><a href="questionnaire.html" class="nav-link text-white">Questionnaire</a></li>
+                <li class="nav-item"><a href="calculator.html" class="nav-link text-white">Calculator</a></li>
+                <li class="nav-item"><a href="funpage.html" class="nav-link text-white">Fun Page</a></li>
+            </ul>
+        </nav>
         </div>
       </div>
     </div>
@@ -26,6 +37,11 @@
 
   <main class="container mt-5 mb-5">
     <h1 class="text-center mb-4">Our Products</h1>
+
+    <!-- مربع البحث -->
+    <div class="form-group">
+      <input type="text" id="searchInput" class="form-control" placeholder="Search for a product..." onkeyup="filterProducts()">
+    </div>
 
     <table class="table table-striped">
       <thead class="thead-dark">
@@ -41,44 +57,11 @@
         <!-- سيتم تعبئته ديناميكياً -->
       </tbody>
     </table>
-
-    <hr>
-
-    <h2 class="text-center mb-4">Add New Product</h2>
-
-    <form id="addProductForm" class="mx-auto" style="max-width: 600px;">
-      <div class="form-group">
-        <label for="name">Product Name:</label>
-        <input type="text" id="name" class="form-control" placeholder="Enter product name" required>
-      </div>
-
-      <button type="submit" class="btn btn-success btn-block">Add Product</button>
-    </form>
   </main>
 
   <footer class="bg-dark text-white text-center p-3 mt-auto">
     <p>&copy; 2025 Fanjan Official</p>
   </footer>
-
-  <!-- مودال النجاح -->
-  <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header bg-success text-white">
-          <h5 class="modal-title" id="successModalLabel">Success</h5>
-          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Product Added Successfully ✅
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -96,9 +79,9 @@
     const tableBody = document.getElementById('productTableBody');
 
     // دالة عرض المنتجات
-    function displayProducts() {
+    function displayProducts(filteredProducts = products) {
       tableBody.innerHTML = "";
-      products.forEach(product => {
+      filteredProducts.forEach(product => {
         const row = document.createElement('tr');
 
         row.innerHTML = `
@@ -116,28 +99,12 @@
     // عرض أولي
     displayProducts();
 
-    // إضافة منتج جديد
-    const addProductForm = document.getElementById('addProductForm');
-    addProductForm.addEventListener('submit', function(event) {
-      event.preventDefault(); 
-
-      const productName = document.getElementById('name').value;
-
-      const newProduct = {
-        image: "default.jpg", // حط صورة افتراضية أو خليه دائماً صورة ثابتة لو تبغى
-        name: productName,
-        description: "New product added",
-        price: 0,
-        rating: "★★★☆☆"
-      };
-
-      products.push(newProduct);
-      displayProducts(); 
-      addProductForm.reset(); 
-
-      // عرض مودال النجاح
-      $('#successModal').modal('show');
-    });
+    // دالة فلترة المنتجات حسب البحث
+    function filterProducts() {
+      const searchValue = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = products.filter(product => product.name.toLowerCase().includes(searchValue));
+      displayProducts(filtered);
+    }
   </script>
 
 </body>
