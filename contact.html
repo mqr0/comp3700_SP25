@@ -51,7 +51,9 @@
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" class="form-control" required>
                 <div class="invalid-feedback">Please enter your email.</div>
-                <small id="emailError" class="text-danger d-none">Please enter a valid email address.</small>
+                <small id="emailError" class="text-danger d-none">
+                    Email must be Gmail, Outlook, or SQU student email.
+                </small>
             </div>
 
             <div class="form-group">
@@ -97,7 +99,8 @@
 
             let valid = true;
 
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            // Accepts only Gmail, Outlook, or SQU student emails
+            const emailRegex = /^(s\d{6}@student\.squ\.edu\.om|[a-zA-Z0-9._%+-]+@(gmail|outlook)\.com)$/;
             if (!emailRegex.test(email)) {
                 emailError.classList.remove('d-none');
                 valid = false;
@@ -109,7 +112,7 @@
             }
 
             if (form.checkValidity() && valid) {
-                form.submit(); // Allow form to submit if all validations pass
+                form.submit();
             }
 
             form.classList.add('was-validated');
