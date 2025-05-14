@@ -10,7 +10,10 @@ $sql = "SELECT product_name, review_text, rating
 $result = $conn->query($sql);
 
 // التحقق من وجود نتائج
-if ($result) {
+if ($result === false) {
+    // في حال فشل الاستعلام، عرض الخطأ
+    echo "خطأ في الاستعلام: " . $conn->error;
+} else {
     if ($result->num_rows > 0) {
         // عرض النتائج في جدول
         echo "<table class='table table-striped'>";
@@ -27,9 +30,6 @@ if ($result) {
     } else {
         echo "لا توجد تقييمات لعرضها."; // إذا لم توجد نتائج
     }
-} else {
-    // طباعة تفاصيل الخطأ في حالة فشل الاستعلام
-    echo "error " . $conn->error;
 }
 
 $conn->close();
