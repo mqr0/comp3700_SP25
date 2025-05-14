@@ -10,7 +10,7 @@ if ($result === false) {
     echo "query error " . $conn->error;
 } else {
     if ($result->num_rows > 0) {
-        echo "<h2 class='text-center'>منتجاتنا</h2>";
+        echo "<h2 class='text-center'>OUR PRODUCTS</h2>";
         echo "<ul class='list-group'>";
 
 
