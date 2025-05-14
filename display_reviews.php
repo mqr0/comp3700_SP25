@@ -12,6 +12,7 @@ if ($product_id > 0) {
             INNER JOIN products ON reviews.product_id = products.product_id
             WHERE products.product_id = $product_id";
 
+    // تنفيذ الاستعلام
     $result = $conn->query($sql);
 
     // التحقق من وجود نتائج
@@ -20,10 +21,18 @@ if ($product_id > 0) {
     } else {
         if ($result->num_rows > 0) {
             // عرض نتائج التقييمات في جدول
-            echo "<h2 class='text-center'>التقييمات الخاصة بـ " . $row["product_name"] . "</h2>";
+            echo "<h2 class='text-center'>التقييمات الخاصة بـ ";
+
+            // الحصول على اسم المنتج الذي تم تحديده
+            $row = $result->fetch_assoc();
+            echo $row["product_name"];
+            echo "</h2>";
             echo "<table class='table table-striped'>";
             echo "<thead class='thead-dark'><tr><th>التقييم</th><th>تقييم الخدمة</th></tr></thead>";
             echo "<tbody>";
+
+            // إعادة ضبط النتيجة من البداية (لأننا استخدمنا fetch_assoc() مرة واحدة)
+            $result->data_seek(0);
 
             // طباعة كل صف من النتائج
             while ($row = $result->fetch_assoc()) {
