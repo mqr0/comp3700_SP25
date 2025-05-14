@@ -13,9 +13,7 @@ if ($result === false) {
         echo "<h2 class='text-center'>OUR PRODUCTS</h2>";
         echo "<ul class='list-group'>";
 
-
-
-        
+ 
    
         while ($row = $result->fetch_assoc()) {
         
