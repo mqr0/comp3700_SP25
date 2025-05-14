@@ -12,6 +12,9 @@ if ($result === false) {
     if ($result->num_rows > 0) {
         echo "<h2 class='text-center'>منتجاتنا</h2>";
         echo "<ul class='list-group'>";
+
+
+
         
    
         while ($row = $result->fetch_assoc()) {
