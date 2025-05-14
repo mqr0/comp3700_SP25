@@ -1,27 +1,29 @@
 <?php
-include 'db_connection.php'; 
+include 'db_connection.php';  // Include the database connection
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    // Get data from the form
     $perfumeName = $_POST['perfumeName']; 
     $reviewText = $_POST['reviewText']; 
     $serviceRating = $_POST['serviceRating']; 
 
-  
+    // Check if fields are not empty
     if (!empty($perfumeName) && !empty($reviewText) && !empty($serviceRating)) {
- 
+        // Insert the review into the database
         $sql = "INSERT INTO reviews (product_id, review_text, rating) 
                 VALUES ((SELECT product_id FROM products WHERE product_name = '$perfumeName'), '$reviewText', '$serviceRating')";
 
         if ($conn->query($sql) === TRUE) {
-            echo "your review aded successfully!";
+            echo "Review added successfully.";
         } else {
-            echo "error " . $sql . "<br>" . $conn->error;
+            echo "Error: " . $sql . "<br>" . $conn->error;
         }
     } else {
-        echo "please fill in all fields";
+        echo "Please fill all fields.";
     }
 }
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
