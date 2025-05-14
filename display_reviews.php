@@ -4,7 +4,6 @@ include 'db_connection.php';
 
 $product_id = isset($_GET['product_id']) ? $_GET['product_id'] : 0;
 
-
 if ($product_id > 0) {
 
     $sql = "SELECT products.product_name, reviews.review_text, reviews.rating 
