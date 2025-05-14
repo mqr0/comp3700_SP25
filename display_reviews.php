@@ -7,7 +7,7 @@ $product_id = isset($_GET['product_id']) ? $_GET['product_id'] : 0;
 // التحقق من أن معرف المنتج صالح
 if ($product_id > 0) {
     // استعلام لاستخراج التقييمات الخاصة بالمنتج
-    $sql = "SELECT product_name, review_text, rating 
+    $sql = "SELECT products.product_name, reviews.review_text, reviews.rating 
             FROM reviews 
             INNER JOIN products ON reviews.product_id = products.product_id
             WHERE products.product_id = $product_id";
