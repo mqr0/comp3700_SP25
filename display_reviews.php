@@ -1,52 +1,43 @@
 <?php
-include 'db_connection.php'; 
+include 'db_connection.php';  // Include the database connection
 
+// Check if the product is specified
+if (isset($_GET['product_id'])) {
+    $product_id = $_GET['product_id'];
 
-$product_id = isset($_GET['product_id']) ? $_GET['product_id'] : 0;
-
-if ($product_id > 0) {
-
+    // Query to retrieve reviews from the reviews table with product information
     $sql = "SELECT products.product_name, reviews.review_text, reviews.rating 
             FROM reviews 
-            INNER JOIN products ON reviews.product_id = products.product_id
+            INNER JOIN products ON reviews.product_id = products.product_id 
             WHERE products.product_id = $product_id";
 
-
+    // Execute the query
     $result = $conn->query($sql);
 
-
-    if ($result === false) {
-        echo "query error " . $conn->error;
-    } else {
+    // Check if there are any results
+    if ($result) {
         if ($result->num_rows > 0) {
-        
-            echo "<h2 class='text-center'>private reviews for  ";
-
-     
-            $row = $result->fetch_assoc();
-            echo $row["product_name"];
-            echo "</h2>";
+            // Display results in a table
             echo "<table class='table table-striped'>";
-            echo "<thead class='thead-dark'><tr><th>Review</th><th>Service Rating</th></tr></thead>";
-
+            echo "<thead class='thead-dark'><tr><th>Perfume Name</th><th>Review</th><th>Service Rating</th></tr></thead>";
             echo "<tbody>";
 
-        
-            $result->data_seek(0);
-
-  
+            // Print each row of the results
             while ($row = $result->fetch_assoc()) {
-                echo "<tr><td>" . $row["review_text"] . "</td><td>" . $row["rating"] . "</td></tr>";
+                echo "<tr><td>" . $row["product_name"] . "</td><td>" . $row["review_text"] . "</td><td>" . $row["rating"] . "</td></tr>";
             }
 
             echo "</tbody>";
             echo "</table>";
         } else {
-            echo "there are no reviews for this product.";
+            echo "No reviews available."; // If no results are found
         }
+    } else {
+        // Print error details if query fails
+        echo "Query error: " . $conn->error;
     }
 } else {
-    echo "there is no product selected!";
+    echo "No product specified.";
 }
 
 $conn->close();
