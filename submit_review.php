@@ -1,25 +1,25 @@
 <?php
-include 'db_connection.php'; // تضمين ملف الاتصال بقاعدة البيانات
+include 'db_connection.php'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // استلام البيانات من النموذج
+
     $perfumeName = $_POST['perfumeName']; 
     $reviewText = $_POST['reviewText']; 
     $serviceRating = $_POST['serviceRating']; 
 
-    // التحقق من أن الحقول ليست فارغة
+  
     if (!empty($perfumeName) && !empty($reviewText) && !empty($serviceRating)) {
-        // إدخال التقييمات في قاعدة البيانات
+ 
         $sql = "INSERT INTO reviews (product_id, review_text, rating) 
                 VALUES ((SELECT product_id FROM products WHERE product_name = '$perfumeName'), '$reviewText', '$serviceRating')";
 
         if ($conn->query($sql) === TRUE) {
-            echo "تم إضافة التقييم بنجاح.";
+            echo "your review aded successfully!";
         } else {
-            echo "خطأ: " . $sql . "<br>" . $conn->error;
+            echo "error " . $sql . "<br>" . $conn->error;
         }
     } else {
-        echo "يرجى ملء جميع الحقول.";
+        echo "please fill in all fields";
     }
 }
 ?>
