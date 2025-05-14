@@ -1,35 +1,43 @@
 <?php
 include 'db_connection.php';  // تضمين الاتصال بقاعدة البيانات
 
-// استعلام لاستخراج التقييمات من جدول reviews مع معلومات عن المنتجات
-$sql = "SELECT product_name, review_text, rating 
-        FROM reviews 
-        INNER JOIN products ON reviews.product_id = products.product_id";
+// الحصول على معرف المنتج من الرابط
+$product_id = isset($_GET['product_id']) ? $_GET['product_id'] : 0;
 
-// تنفيذ الاستعلام
-$result = $conn->query($sql);
+// التحقق من أن معرف المنتج صالح
+if ($product_id > 0) {
+    // استعلام لاستخراج التقييمات الخاصة بالمنتج
+    $sql = "SELECT product_name, review_text, rating 
+            FROM reviews 
+            INNER JOIN products ON reviews.product_id = products.product_id
+            WHERE products.product_id = $product_id";
 
-// التحقق من وجود نتائج
-if ($result === false) {
-    // في حال فشل الاستعلام، عرض الخطأ
-    echo "خطأ في الاستعلام: " . $conn->error;
-} else {
-    if ($result->num_rows > 0) {
-        // عرض النتائج في جدول
-        echo "<table class='table table-striped'>";
-        echo "<thead class='thead-dark'><tr><th>اسم العطر</th><th>التقييم</th><th>تقييم الخدمة</th></tr></thead>";
-        echo "<tbody>";
+    $result = $conn->query($sql);
 
-        // طباعة كل صف من النتائج
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr><td>" . $row["product_name"] . "</td><td>" . $row["review_text"] . "</td><td>" . $row["rating"] . "</td></tr>";
-        }
-
-        echo "</tbody>";
-        echo "</table>";
+    // التحقق من وجود نتائج
+    if ($result === false) {
+        echo "خطأ في الاستعلام: " . $conn->error;
     } else {
-        echo "لا توجد تقييمات لعرضها."; // إذا لم توجد نتائج
+        if ($result->num_rows > 0) {
+            // عرض نتائج التقييمات في جدول
+            echo "<h2 class='text-center'>التقييمات الخاصة بـ " . $row["product_name"] . "</h2>";
+            echo "<table class='table table-striped'>";
+            echo "<thead class='thead-dark'><tr><th>التقييم</th><th>تقييم الخدمة</th></tr></thead>";
+            echo "<tbody>";
+
+            // طباعة كل صف من النتائج
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr><td>" . $row["review_text"] . "</td><td>" . $row["rating"] . "</td></tr>";
+            }
+
+            echo "</tbody>";
+            echo "</table>";
+        } else {
+            echo "لا توجد تقييمات لهذا المنتج.";
+        }
     }
+} else {
+    echo "لم يتم تحديد المنتج.";
 }
 
 $conn->close();
