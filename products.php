@@ -17,6 +17,7 @@ if ($result === false) {
         while ($row = $result->fetch_assoc()) {
             // عرض رابط لعرض التقييمات الخاصة بكل منتج
             echo "<li class='list-group-item'>";
+            // إضافة معرف المنتج (product_id) في الرابط
             echo "<a href='display_reviews.php?product_id=" . $row["product_id"] . "'>" . $row["product_name"] . "</a>";
             echo "</li>";
         }
