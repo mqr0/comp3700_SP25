@@ -1,40 +1,41 @@
 <?php
-include 'db_connection.php';  // تضمين الاتصال بقاعدة البيانات
+include 'db_connection.php'; 
 
-// الحصول على معرف المنتج من الرابط
+
 $product_id = isset($_GET['product_id']) ? $_GET['product_id'] : 0;
 
-// التحقق من أن معرف المنتج صالح
+
 if ($product_id > 0) {
-    // استعلام لاستخراج التقييمات الخاصة بالمنتج
+
     $sql = "SELECT products.product_name, reviews.review_text, reviews.rating 
             FROM reviews 
             INNER JOIN products ON reviews.product_id = products.product_id
             WHERE products.product_id = $product_id";
 
-    // تنفيذ الاستعلام
+
     $result = $conn->query($sql);
 
-    // التحقق من وجود نتائج
+
     if ($result === false) {
-        echo "خطأ في الاستعلام: " . $conn->error;
+        echo "query error " . $conn->error;
     } else {
         if ($result->num_rows > 0) {
-            // عرض نتائج التقييمات في جدول
-            echo "<h2 class='text-center'>التقييمات الخاصة بـ ";
+        
+            echo "<h2 class='text-center'>private reviews for  ";
 
-            // الحصول على اسم المنتج الذي تم تحديده
+     
             $row = $result->fetch_assoc();
             echo $row["product_name"];
             echo "</h2>";
             echo "<table class='table table-striped'>";
-            echo "<thead class='thead-dark'><tr><th>التقييم</th><th>تقييم الخدمة</th></tr></thead>";
+            echo "<thead class='thead-dark'><tr><th>Review</th><th>Service Rating</th></tr></thead>";
+
             echo "<tbody>";
 
-            // إعادة ضبط النتيجة من البداية (لأننا استخدمنا fetch_assoc() مرة واحدة)
+        
             $result->data_seek(0);
 
-            // طباعة كل صف من النتائج
+  
             while ($row = $result->fetch_assoc()) {
                 echo "<tr><td>" . $row["review_text"] . "</td><td>" . $row["rating"] . "</td></tr>";
             }
@@ -42,11 +43,11 @@ if ($product_id > 0) {
             echo "</tbody>";
             echo "</table>";
         } else {
-            echo "لا توجد تقييمات لهذا المنتج.";
+            echo "there are no reviews for this product.";
         }
     }
 } else {
-    echo "لم يتم تحديد المنتج.";
+    echo "there is no product selected!";
 }
 
 $conn->close();
