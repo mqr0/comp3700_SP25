@@ -1,0 +1,123 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Contact Us</title> 
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body style="min-height: 100vh; display: flex; flex-direction: column;">
+
+    <!-- Header -->
+    <header class="bg-dark text-white p-3">
+        <div class="container text-center">
+            <img src="logo2.png" alt="Logo" class="logo" style="width: 120px;">
+        </div>
+        <nav>
+            <ul class="nav justify-content-center">
+                <li class="nav-item"><a href="index.html" class="nav-link text-white">Home</a></li>
+                <li class="nav-item"><a href="attar.html" class="nav-link text-white">Attar</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link text-white">Contact Us</a></li>
+                <li class="nav-item"><a href="reviews.html" class="nav-link text-white">Reviews</a></li>
+                <li class="nav-item"><a href="products.html" class="nav-link text-white">Products</a></li>
+                <li class="nav-item"><a href="blog.html" class="nav-link text-white">Blog</a></li>
+                <li class="nav-item"><a href="store-policies.html" class="nav-link text-white">Store Policies</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link text-white">About Us</a></li>
+                <li class="nav-item"><a href="questionnaire.html" class="nav-link text-white">Questionnaire</a></li>
+                <li class="nav-item"><a href="calculator.html" class="nav-link text-white">Calculator</a></li>
+                <li class="nav-item"><a href="funpage.html" class="nav-link text-white">Fun Page</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mt-5">
+        <h1 class="text-center">Contact Us</h1>
+        <p>If you have any questions, feel free to reach out using the form below:</p>
+
+        <!-- Contact Form -->
+        <form action="https://httpbin.org/get" method="GET" class="needs-validation mx-auto" style="max-width: 600px;" novalidate>
+            
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" class="form-control" required>
+                <div class="invalid-feedback">Please enter your name.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+                <div class="invalid-feedback">Please enter your email.</div>
+                <small id="emailError" class="text-danger d-none">
+                    Email must be Gmail, Outlook, or SQU student email.
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" class="form-control" rows="4" required></textarea>
+                <div class="invalid-feedback">Please enter your message.</div>
+                <small id="messageError" class="text-danger d-none">Message must be at least 10 characters long.</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center p-3 mt-auto">
+        <p>&copy; 2025 Fanjan Official</p>
+    </footer>
+
+    <!-- Bootstrap JS + jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Validation Script -->
+    <script>
+    (function () {
+        'use strict'
+
+        var form = document.querySelector('.needs-validation');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            const emailError = document.getElementById('emailError');
+            const messageError = document.getElementById('messageError');
+
+            emailError.classList.add('d-none');
+            messageError.classList.add('d-none');
+
+            let valid = true;
+
+            // Accepts only Gmail, Outlook, or SQU student emails
+            const emailRegex = /^(s\d{6}@student\.squ\.edu\.om|[a-zA-Z0-9._%+-]+@(gmail|outlook)\.com)$/;
+            if (!emailRegex.test(email)) {
+                emailError.classList.remove('d-none');
+                valid = false;
+            }
+
+            if (message.length < 10) {
+                messageError.classList.remove('d-none');
+                valid = false;
+            }
+
+            if (form.checkValidity() && valid) {
+                form.submit();
+            }
+
+            form.classList.add('was-validated');
+        }, false);
+    })();
+    </script>
+</body>
+</html>

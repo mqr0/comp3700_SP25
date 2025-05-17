@@ -1,0 +1,123 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head>
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Products</title> 
+
+  <!-- Link to Bootstrap CSS for styling -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body style="min-height: 100vh; display: flex; flex-direction: column;"> <!-- Full-height body with flexbox layout -->
+
+  <!-- Header section with logo and navigation menu -->
+  <header class="bg-dark text-white p-3">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-2 text-center">
+          <!-- Company logo -->
+          <img src="logo2.png" alt="Logo" class="logo" style="width: 120px;">
+        </div>
+        <div class="col-md-10">
+          <!-- Navigation bar -->
+          <nav>
+            <ul class="nav justify-content-center">
+              <li class="nav-item"><a href="index.html" class="nav-link text-white">Home</a></li>
+              <li class="nav-item"><a href="attar.html" class="nav-link text-white">Attar</a></li>
+              <li class="nav-item"><a href="contact.html" class="nav-link text-white">Contact Us</a></li>
+              <li class="nav-item"><a href="reviews.html" class="nav-link text-white">Reviews</a></li>
+              <li class="nav-item"><a href="products.html" class="nav-link text-white">Products</a></li>
+              <li class="nav-item"><a href="blog.html" class="nav-link text-white">Blog</a></li>
+              <li class="nav-item"><a href="store-policies.html" class="nav-link text-white">Store Policies</a></li>
+              <li class="nav-item"><a href="about.html" class="nav-link text-white">About Us</a></li>
+              <li class="nav-item"><a href="questionnaire.html" class="nav-link text-white">Questionnaire</a></li>
+              <li class="nav-item"><a href="calculator.html" class="nav-link text-white">Calculator</a></li>
+              <li class="nav-item"><a href="funpage.html" class="nav-link text-white">Fun Page</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main content section -->
+  <main class="container mt-5 mb-5">
+    <h1 class="text-center mb-4">Our Products</h1> <!-- Page heading -->
+
+    <!-- Search input to filter products -->
+    <div class="form-group">
+      <input type="text" id="searchInput" class="form-control" placeholder="Search for a product..." onkeyup="filterProducts()">
+    </div>
+
+    <!-- Table to display the list of products -->
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>Image</th>
+          <th>Product Name</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      <tbody id="productTableBody">
+        <!-- Product rows will be inserted here dynamically -->
+      </tbody>
+    </table>
+  </main>
+
+  <!-- Footer section -->
+  <footer class="bg-dark text-white text-center p-3 mt-auto">
+    <p>&copy; 2025 Fanjan Official</p> <!-- Footer text -->
+  </footer>
+
+  <!-- JavaScript libraries for Bootstrap functionality -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> <!-- jQuery library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> <!-- Popper.js for tooltip and popover positioning -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> <!-- Bootstrap's JavaScript components -->
+
+  <!-- Custom JavaScript for displaying and filtering products -->
+  <script>
+    // Array of product objects
+    let products = [
+      { image: "mai.jpg", name: "MAYSAM", description: "Floral scent with Omani hinna", price: 15, rating: "★★★★☆" },
+      { image: "mad.jpg", name: "MADAR", description: "Refreshing citrus scent", price: 12, rating: "★★★☆☆" },
+      { image: "go.jpg", name: "GOLDEN ELIXIR", description: "Sweet vanilla and amber blend", price: 24, rating: "★★★★★" },
+      { image: "wh.jpg", name: "WHISPERS OF DAWN", description: "Rich and woody scent", price: 24, rating: "★★★★☆" }
+    ];
+
+    const tableBody = document.getElementById('productTableBody'); // Get table body element
+
+    // Function to display products in the table
+    function displayProducts(filteredProducts = products) {
+      tableBody.innerHTML = ""; // Clear previous rows
+      filteredProducts.forEach(product => {
+        const row = document.createElement('tr'); // Create a new row
+
+        // Set the HTML content for the row
+        row.innerHTML = `
+          <td><img src="${product.image}" alt="${product.name}" style="width: 60px;"></td>
+          <td>${product.name}</td>
+          <td>${product.description}</td>
+          <td>${product.price} OMR</td>
+          <td>${product.rating}</td>
+        `;
+
+        tableBody.appendChild(row); // Append the row to the table
+      });
+    }
+
+    // Initial display of all products
+    displayProducts();
+
+    // Function to filter products based on search input
+    function filterProducts() {
+      const searchValue = document.getElementById('searchInput').value.toLowerCase(); // Get search input value
+      const filtered = products.filter(product => product.name.toLowerCase().includes(searchValue)); // Filter products by name
+      displayProducts(filtered); // Update the table with filtered products
+    }
+  </script>
+
+</body>
+</html>

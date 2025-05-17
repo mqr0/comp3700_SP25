@@ -1,0 +1,120 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Questionnaire</title> 
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- JavaScript for validation -->
+    <script>
+        function validateForm() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const feedback = document.getElementById('feedback').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            let valid = true;
+
+            // Reset error messages
+            document.getElementById('passwordError').classList.add('d-none');
+            document.getElementById('confirmError').classList.add('d-none');
+
+            // Check if any field is empty
+            if (!name || !email || !feedback || !password || !confirmPassword) {
+                alert('Please fill all the fields.');
+                return false;
+            }
+
+            // Password pattern check
+            const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+            if (!passwordPattern.test(password)) {
+                document.getElementById('passwordError').classList.remove('d-none');
+                valid = false;
+            }
+
+            // Confirm password check
+            if (password !== confirmPassword) {
+                document.getElementById('confirmError').classList.remove('d-none');
+                valid = false;
+            }
+
+            return valid;
+        }
+    </script>
+</head>
+
+<body style="min-height: 100vh; display: flex; flex-direction: column;">
+    <!-- Header -->
+    <header class="bg-dark text-white p-3">
+        <div class="container text-center">
+            <img src="logo2.png" alt="Logo" class="logo" style="width: 120px;">
+        </div>
+        <nav>
+            <ul class="nav justify-content-center">
+                <li class="nav-item"><a href="index.html" class="nav-link text-white">Home</a></li>
+                <li class="nav-item"><a href="attar.html" class="nav-link text-white">Attar</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link text-white">Contact Us</a></li>
+                <li class="nav-item"><a href="reviews.html" class="nav-link text-white">Reviews</a></li>
+                <li class="nav-item"><a href="products.html" class="nav-link text-white">Products</a></li>
+                <li class="nav-item"><a href="blog.html" class="nav-link text-white">Blog</a></li>
+                <li class="nav-item"><a href="store-policies.html" class="nav-link text-white">Store Policies</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link text-white">About Us</a></li>
+                <li class="nav-item"><a href="questionnaire.html" class="nav-link text-white">Questionnaire</a></li>
+                <li class="nav-item"><a href="calculator.html" class="nav-link text-white">Calculator</a></li>
+                <li class="nav-item"><a href="funpage.html" class="nav-link text-white">Fun Page</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main content -->
+    <main class="container mt-5">
+        <h1 class="text-center">User Feedback Questionnaire</h1>
+        <p class="text-center">We value your feedback! Please fill out the form below:</p>
+
+        <form action="https://httpbin.org/get" method="GET" onsubmit="return validateForm()" class="mx-auto" style="max-width: 600px;">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="feedback">Your Feedback:</label>
+                <textarea id="feedback" name="feedback" class="form-control" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+                <small id="passwordError" class="text-danger d-none">Password must be at least 6 characters and include letters and numbers.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required>
+                <small id="confirmError" class="text-danger d-none">Passwords do not match.</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center p-3 mt-auto">
+        <p>&copy; 2025 Fanjan Official</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
